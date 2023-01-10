@@ -1,0 +1,69 @@
+<div class="container">
+
+  <div class="form">
+    <div class="groups">
+
+      <h1 class="app-title">
+        <span>Fetch</span>
+        <img class="fetch-logo" src="/assets/unnamed.png">
+
+      </h1>
+      <h1 class="sign-up">Sign Up</h1>
+      <form #form="ngForm" (ngSubmit)="submit(form)">
+        <div class="group">
+          <label [class.label-touched]="name.touched" for="name">Full Name:</label>
+          <input id="name" type="text" ngModel name="name" #name="ngModel" required/>
+          <div class="error" *ngIf="name.touched && !name.valid">
+            <div *ngIf="name.errors?.required">This field is required</div>
+          </div>
+        </div>
+        <div class="group">
+          <label [class.label-touched]="email.touched" for="email">Email:</label>
+          <input id="email" type="text" ngModel name="email" #email="ngModel" email required/>
+          <div class="error" *ngIf="email.touched && !email.valid">
+            <div *ngIf="email.errors?.required">This field is required</div>
+            <div *ngIf="email.errors?.email">Please enter a valid email</div>
+          </div>
+        </div>
+        <div class="group">
+          <label [class.label-touched]="password.touched" for="password">Password:</label>
+          <input id="password" type="password" ngModel name="password" #password="ngModel" minlength="8"
+                 pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required>
+          <div class="error" *ngIf="password.touched && !password.valid">
+            <div *ngIf="password.errors?.required">This field is required</div>
+            <div *ngIf="password.errors?.minlength">The password must be at least 8 characters long</div>
+            <div *ngIf="password.errors?.pattern">Password must contain at least one letter, one number, and one special character</div>
+          </div>
+        </div>
+        <div class="group">
+          <label [class.label-touched]="occupation.touched" for="occupation">Occupation:</label>
+          <select id="occupation" ngModel name="occupation" #occupation="ngModel" required>
+            <option hidden disabled selected></option>
+            <option *ngFor="let occupation of occupations">{{occupation}}</option>
+          </select>
+          <div class="error" *ngIf="occupation.touched && !occupation.valid">
+            <div *ngIf="occupation.errors?.required">This field is required</div>
+          </div>
+        </div>
+        <div class="group">
+          <label [class.label-touched]="state.touched" for="state">State</label>
+          <select id="state" ngModel name="state" #state="ngModel" required>
+            <option hidden disabled selected value></option>
+            <option *ngFor="let state of states">{{state.name}}</option>
+          </select>
+          <div class="error" *ngIf="state.touched && !state.valid">
+            <div *ngIf="state.errors?.required">This field is required</div>
+          </div>
+        </div>
+        <div class="group">
+          <input class="submit" type="submit">
+          <div class="failure" *ngIf="failure">{{failure}}</div>
+          <div class="success" *ngIf="success">{{success}}</div>
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+
+</div>

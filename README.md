@@ -1,27 +1,20 @@
 # FetchFrontEndExercise
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
+## Running the project
 
-## Development server
+Run `ng serve`. Unless another port is specified, the web-app will be running at `http://localhost:4200/`.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Design 
 
-## Code scaffolding
+The website is fully mobile and tablet responsible. It also incorporates the Fetch logo and colors.  
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Function 
 
-## Build
+The form requires that all fields be filled before submission. If there are any errors in the form such as an invalid email, a popup message notifies the user to fix the error before proceeding. Passwords are required to be at least 8 characters long, with at least one letter, one number, and one special character.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Service
+The website does a `GET` call to `https://frontend-take-home.fetchrewards.com/form` to get the `occupations` and `states` lists, which are then displayed to the user as options in select dropdowns.
 
-## Running unit tests
+Upon clicking `Submit`, (and if the form values are valid) the website will make a `POST` request to the same endpoint as above and provide the form value as a User object in the body. 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Upon valid submission, there will be a success message below the `Submit` button. To trigger a failure message, you can change the value of the `name` attribute in any of the inputs in the login.component.html file. Ex: Change `name="name"` to `name="fullname"` in the `name` input tag. Submission will cause a 400 error and display the failure message in the html.
